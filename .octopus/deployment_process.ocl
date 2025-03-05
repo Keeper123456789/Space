@@ -1,0 +1,27 @@
+step "space" {
+    name = "space"
+    package_requirement = "AfterPackageAcquisition"
+
+    action {
+        action_type = "aws-s3-create-bucket"
+        step_package_version = "2.0.0"
+        worker_pool = "hosted-windows"
+
+        inputs {
+            bucketName = "space"
+            objectWriterOwnership = false
+            publicAccess = true
+            region = "Northern Virginia"
+
+            authentication {
+                credentials {
+                    type = "worker"
+                }
+
+                role {
+                    type = "noAssumedRole"
+                }
+            }
+        }
+    }
+}
